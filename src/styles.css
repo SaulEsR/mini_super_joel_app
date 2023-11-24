@@ -1,4 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@400;700&display=swap');
+
 :root {
-  color: white;
-  background-color: black;
+  --color-negro: #000;
+  --color-blanco: #fff;
+
+  --fuente-principal: 'Montserrat', sans-serif;
+  --fuente-secundaria: 'Lato', sans-serif;
+}
+html{
+  font-size: 62.5%; /* regular rem. 1rem = 10px */
+  box-sizing: border-box; /* manejar dd */
+}
+*, *::before, *::after{
+  box-sizing: inherit; /* manejar dd */
+}
+
+/* Globales */
+body{
+  font-size: 1.6rem; /* regular rem */
+}
+h1{
+  font-size: 4rem;
+}
+h2{
+  font-size: 3.2rem;
+}
+h3{
+  font-size: 2.4rem;
+}
+p{
+  font-size: 1.8rem;
+  color: var(--color-negro);
+}
+a{
+  text-decoration: none;
+}
+h1, h2, h3{
+  text-align: center;
+  font-family: var(--fuente-principal);
+  color: var(--color-negro);
 }
