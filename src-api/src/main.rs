@@ -1,27 +1,26 @@
 mod db;
-mod errors;
-mod models;
-mod routes;
 mod server;
+mod utils;
+
+use crate::{db::database::init, server::server::create_server, utils::env::Vars};
 
 use tracing::{event, Level};
 
 #[tokio::main]
 async fn main() {
     dotenv::dotenv().ok();
-
     tracing_subscriber::fmt()
         .with_writer(std::io::stdout)
         .init();
+
     event!(Level::INFO, "Inicializando...");
 
-    let server = server::create_server().await;
-    // La url se encuentra en el archivo .env que es donde se almacenaran las variables de entorno,
-    // aqui estara la url con la cual se conectara el servidor, y para abrirlo estara en localhost:3000
-    let port =
-        std::env::var("API_URL").expect("No se encontro el puerto en las variables de entorno");
+    // Guardar todas las variables de entorno en una structura guardada en esta variable
+    let env_vars = Vars::init();
 
-    let listener = tokio::net::TcpListener::bind(port).await.unwrap();
+    // Conectarse con la base de datos
+    init(env_vars.clone()).await;
 
-    axum::serve(listener, server).await.unwrap();
+    // Conectarse con el servidor
+    create_server(env_vars).await;
 }

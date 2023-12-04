@@ -1,36 +1,45 @@
+use once_cell::sync::Lazy;
 use surrealdb::{
-    engine::remote::ws::{Client, Ws},
-    opt::auth::Root,
-    Error, Surreal,
+    engine::local::{Db as LocalDb, Mem},
+    Surreal,
 };
+use tracing::{event, Level};
 
-#[derive(Clone, Debug)]
-pub struct Database {
-    pub client: Surreal<Client>,
-    pub name_space: String,
-    pub db_name: String,
-}
+use crate::utils::env::Vars;
 
-impl Database {
-    // Remover cuando este listo la api para mandar contenido
-    #[allow(dead_code)]
-    pub async fn init() -> Result<Self, Error> {
-        // Para que se conecte con surreal, tenemos que iniciar el servidor en remoto
-        // el comando es surreal start file:abarrotes.db --user root --password root
-        let client = Surreal::new::<Ws>("127.0.0.1:8000").await?;
+type Db = Surreal<LocalDb>;
+static DB: Lazy<Db> = Lazy::new(Surreal::init);
 
-        client
-            .signin(Root {
-                username: "root",
-                password: "root",
-            })
-            .await?;
-        client.use_ns("surreal").use_db("abarrotes").await.unwrap();
-
-        Ok(Database {
-            client,
-            name_space: String::from("surreal"),
-            db_name: String::from("abarrotes"),
-        })
+pub async fn init(vars: Vars) {
+    match DB.connect::<Mem>(()).await {
+        Ok(_) => {
+            event!(Level::DEBUG, "Conectado a la base de datos");
+        }
+        Err(why) => {
+            event!(
+                Level::ERROR,
+                "Ocurrio un error al momento de conectarse a la base de datos, Razon: {}",
+                why
+            );
+        }
+    }
+    event!(Level::DEBUG, "Base de datos conectado en memoria");
+    let version = DB.version().await;
+    event!(
+        Level::DEBUG,
+        "La version de la base de datos es {:?}",
+        version
+    );
+    match DB
+        .use_ns(vars.surrealdb_namespace)
+        .use_db(vars.surrealdb_database)
+        .await
+    {
+        Ok(_) => {
+            event!(Level::DEBUG, "Conectado al namespace y a la base de datos");
+        }
+        Err(why) => {
+            event!(Level::ERROR, "Ocurrio un error al momento de conectar la base de datos con un namespace, Razon {}", why);
+        }
     }
 }

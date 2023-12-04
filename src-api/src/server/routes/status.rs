@@ -1,8 +1,7 @@
+use crate::utils::errors::Error;
 use axum::{routing::get, Json, Router};
 use serde::{Deserialize, Serialize};
 use tracing::{event, Level};
-
-use crate::errors::Error;
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Status {
@@ -14,7 +13,7 @@ pub fn create_route() -> Router {
 }
 
 async fn get_status() -> Result<Json<Status>, Error> {
-    event!(Level::DEBUG, "Retornando el estatus");
+    event!(Level::DEBUG, "Retornando el estado de la api");
 
     Ok(Json(Status {
         status: "Ok".to_owned(),
