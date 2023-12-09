@@ -10,11 +10,73 @@
 
   <link rel="preload" href="src/styles.css" as="style">
   <link rel="stylesheet" href="src/styles.css">
-  <title>If</title>
+  <title>Minisuper Joel</title>
 </head>
 
 <body>
+  <header class="header">
+    <a href="index.html">
+      <img class="logo" src="src/assets/loggo.png">
+    </a>
+    <div class="barra-busqueda">
+      <input class="barra-busqueda__input" type="text" placeholder="Buscar">
+      <select class="barra-busqueda__categorias">
+        <option selected disabled>Seleccionar Categoria</option>
+        <option>Opcionj</option>
+        <option>Opciong</option>
+        <!-- esto se act con la base de datos -->
+      </select>
+      <button class="boton-buscar" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff"
+          stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+      </button>
+    </div> <!-- fin .barra-busqueda -->
+    <div class="header-cuenta">
+      <a><span>Acceder</span>/<span>Registrarse</span></a>
+    </div>
+    <div class="header-cart">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+          class="lucide lucide-shopping-cart">
+          <circle cx="8" cy="21" r="1" />
+          <circle cx="19" cy="21" r="1" />
+          <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+        </svg>
+        <span>$<span class="cart-total">0.00</span></span> <!-- esto -->
+        </a>
+      </span>
+    </div> <!-- fin .cart -->
+  </header> <!-- fin .header -->
+
+  <section class="hero">
+    <div class="contenido-hero">
+      <h2>Minisúper <span>Joel</span></h2>
+      <div class="contenido-hero__ubicacion">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffb703"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin">
+          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+        <p>Culiacán, Sinaloa</p>
+      </div>
+    </div>
+  </section> <!-- fin .hero -->
+
+  <main class="contenedor">
+    <h2>Productos</h2>
+    <div>
+      <!-- acá lista de p -->
+    </div>
+  </main>
+
+  <footer class="footer">&copy; 2023. Minisuper Joel</footer>
+
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
+
 </html>
