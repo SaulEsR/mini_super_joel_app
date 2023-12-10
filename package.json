@@ -1,25 +1,25 @@
 {
-	"name": "mini_super_joel_app",
-	"private": true,
-	"version": "0.0.0",
-	"type": "module",
-	"scripts": {
-		"dev": "vite",
-		"build": "vite build",
-		"preview": "vite preview",
-		"tauri": "tauri",
-		"format": "npx prettier --write ."
-	},
-	"dependencies": {
-		"@tauri-apps/api": "^1.5.1",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"react-router-dom": "^6.18.0"
-	},
-	"devDependencies": {
-		"@tauri-apps/cli": "^1.5.6",
-		"@vitejs/plugin-react": "^4.0.3",
-		"prettier": "^3.1.0",
-		"vite": "^4.4.4"
-	}
+  "name": "mini_super_joel_app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "prettier": "prettier --write ."
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^1.5.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.5.6",
+    "@vitejs/plugin-react": "^4.0.3",
+    "prettier": "^3.1.1",
+    "vite": "^4.4.4"
+  }
 }
